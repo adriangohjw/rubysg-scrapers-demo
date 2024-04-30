@@ -1,0 +1,10 @@
+<body>
+  <div id="data-container">
+    <h1>Total count: <%= @total_count %></h1>
+    <ul>
+      <% @jobs.each do |job| %>
+        <li id="<%= job[:id] %>"><%= job[:title] %></li>
+      <% end %>
+    </ul>
+  </div>
+</body>

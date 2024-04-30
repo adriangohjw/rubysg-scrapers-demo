@@ -1,0 +1,61 @@
+<body>
+  <div id="data-container"></div>
+</body>
+
+<script>
+function displayLoadingMessage(duration) {
+  const container = document.getElementById('data-container');
+  container.textContent = "loading...";
+  setTimeout(() => {
+    container.textContent = '';
+  }, duration);
+}
+
+async function fetchData() {
+  const response = await fetch('http://localhost:3000/api/jobs');
+
+  if (response.status === 401) {
+    console.error('Unauthorized: Access denied');
+    return null;
+  }
+
+  const data = await response.json();
+  console.log
+  return data;
+}
+
+function renderData(data) {
+  const container = document.getElementById('data-container');
+
+  if (data === null) {
+    const totalCountHeader = document.createElement('h1');
+    totalCountHeader.textContent = `Unavailable!!!`;
+    container.appendChild(totalCountHeader);
+  }
+
+  // render total count
+  const totalCountHeader = document.createElement('h1');
+  totalCountHeader.textContent = `Total count: ${data.total_count}`;
+  container.appendChild(totalCountHeader);
+  
+  // render job listings
+  const list = document.createElement('ul');
+  data.jobs.forEach(job => {
+    const listItem = document.createElement('li');
+    listItem.textContent = job.title;
+    list.appendChild(listItem);
+  });
+  container.appendChild(list);
+}
+
+async function fetchAndRender() {
+  const delay = 2000;
+  displayLoadingMessage(delay);
+  setTimeout(async () => {
+    const data = await fetchData();
+    renderData(data);
+  }, delay);
+}
+
+fetchAndRender();
+</script>

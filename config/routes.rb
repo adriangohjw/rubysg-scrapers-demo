@@ -7,4 +7,8 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+
+  get 'server_side_rendering' => 'application#server_side_rendering'
+  get 'client_side_rendering' => 'application#client_side_rendering'
+  get 'api/jobs' => 'application#api'
 end
