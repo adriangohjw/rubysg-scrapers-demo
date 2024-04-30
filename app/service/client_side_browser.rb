@@ -1,6 +1,6 @@
-class WebCrawler
-  def initialize(url: 'http://localhost:3000/client_side_rendering')
-    @url = url
+class ClientSideBrowser
+  def initialize
+    @url = 'http://localhost:3000/client_side_rendering'
     @content = nil
   end
 

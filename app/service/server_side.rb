@@ -1,6 +1,6 @@
-class Scraper
-  def initialize(url: 'http://localhost:3000/server_side_rendering')
-    @url = url
+class ServerSide
+  def initialize
+    @url = 'http://localhost:3000/server_side_rendering'
     @content = nil
   end
 
